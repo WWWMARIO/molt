@@ -6,7 +6,8 @@ const routes: Routes = [{
   path: '',
   component: WelcomeComponent,
   pathMatch: 'full'
-}];
+},
+  { path: 'menu', loadChildren: () => import('./modules/menu/menu.module').then(m => m.MenuModule) }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
