@@ -31,6 +31,7 @@
         (click)="viewOrder()"
         color="basic"
         mat-mini-fab
+        [matBadgeHidden]="(numberOfItemsOnOrder$ | async) <= 0"
         [matBadge]="numberOfItemsOnOrder$ | async"
         matBadgePosition="after"
         matBadgeColor="accent"

@@ -1,0 +1,9 @@
+<p>review-order-modal works!</p>
+<mat-card *ngFor="let orderItem of (order$ | async).orderItems">
+
+
+  <div *ngIf="(getItem(orderItem.itemId) | async) as item">
+    {{ item.name }} {{ item.price }} {{ orderItem.amount }}
+  </div>
+</mat-card>
+

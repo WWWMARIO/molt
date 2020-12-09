@@ -33,6 +33,7 @@ const routes: Routes = [
     path: 'welcome',
     component: WelcomeComponent,
   },
+  { path: 'orders', loadChildren: () => import('./modules/orders/orders.module').then(m => m.OrdersModule) },
   {
     path: '**',
     component: PageNotFoundComponent,
