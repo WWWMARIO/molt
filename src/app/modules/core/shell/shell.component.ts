@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { OrderService } from '../services/order.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-shell',
+  templateUrl: './shell.component.html',
+  styleUrls: ['./shell.component.scss']
 })
-export class HomeComponent {
+export class ShellComponent implements OnInit {
+
   numberOfItemsOnOrder$: Observable<number>;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)

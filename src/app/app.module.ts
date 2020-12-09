@@ -18,13 +18,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { HomeComponent } from './modules/core/home/home.component';
-
-
-
-
-
-
+import { ShellComponent } from './modules/core/shell/shell.component';
+import { PageNotFoundComponent } from './modules/core/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +28,8 @@ import { HomeComponent } from './modules/core/home/home.component';
     LogInComponent,
     SignUpComponent,
     HeaderComponent,
-    HomeComponent
+    ShellComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,9 +44,9 @@ import { HomeComponent } from './modules/core/home/home.component';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
