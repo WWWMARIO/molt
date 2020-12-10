@@ -6,20 +6,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatIconModule} from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 
+import { MatListModule } from '@angular/material/list';
 
-import {MatBadgeModule} from '@angular/material/badge';
-
-
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
-  declarations: [
-
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     MatInputModule,
@@ -31,9 +28,10 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatToolbarModule,
     MatDialogModule,
     MatIconModule,
-    MatBadgeModule
-
-  ],exports: [
+    MatBadgeModule,
+    MatListModule,
+  ],
+  exports: [
     CommonModule,
     MatInputModule,
     MatButtonModule,
@@ -44,7 +42,8 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatToolbarModule,
     MatDialogModule,
     MatIconModule,
-    MatBadgeModule
-  ]
+    MatBadgeModule,
+    MatListModule,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

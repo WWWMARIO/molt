@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { IItem } from 'src/app/shared/models/IItem.model';
-import { IOrderItem } from 'src/app/shared/models/IOrderItem.model';
-import { IOrder, Order } from 'src/app/shared/models/Order.model';
+import { Item } from 'src/app/shared/models/Item.model';
+import { Order } from 'src/app/shared/models/Order.model';
+import { OrderItem } from 'src/app/shared/models/OrderItem.model';
+import { MenuService } from '../../menu/services/menu.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrderService {
-  private order = new BehaviorSubject<Order>(new Order(11, []));
+  private order = new BehaviorSubject<Order>(new Order(44, []));
 
-  constructor() {}
+  constructor(private menuService: MenuService) {}
 
   getOrder() {
-    return this.order;
+    return this.order.asObservable();
   }
 
   getTotalNumberOfItemsOnOrder() {
@@ -27,10 +28,10 @@ export class OrderService {
     );
   }
 
-  getItemAmount(item: IItem) {
+  getItemAmount(item: Item) {
     return this.order.pipe(
       map((order: Order) => {
-        const orderItem = order.orderItems.find((orderItem: IOrderItem) => {
+        const orderItem = order.orderItems.find((orderItem: OrderItem) => {
           return orderItem.itemId === item.id;
         });
         if (orderItem) {
@@ -42,13 +43,26 @@ export class OrderService {
     );
   }
 
-  addToOrder(item: IItem) {
+  getTotal() {
+    return combineLatest([this.menuService.getMenu(), this.getOrder()]).pipe(
+      map(([menu, order]) => {
+        return order.orderItems.reduce((total, item) => {
+          const price = menu.find((i) => {
+            return i.id === item.itemId;
+          }).price;
+          return total + price * item.amount;
+        }, 0);
+      })
+    );
+  }
+
+  addToOrder(item: Item) {
     const order = this.order.getValue();
     order.addItem(item);
     this.order.next(order);
   }
 
-  removeFromOrder(item: IItem) {
+  removeFromOrder(item: Item) {
     const order = this.order.getValue();
     order.removeItem(item);
     this.order.next(order);

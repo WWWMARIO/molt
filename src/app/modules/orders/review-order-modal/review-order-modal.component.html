@@ -1,9 +1,43 @@
-<p>review-order-modal works!</p>
-<mat-card *ngFor="let orderItem of (order$ | async).orderItems">
+<mat-card-header>
+  <mat-card-title>Review order</mat-card-title>
+</mat-card-header>
 
-
-  <div *ngIf="(getItem(orderItem.itemId) | async) as item">
-    {{ item.name }} {{ item.price }} {{ orderItem.amount }}
+<div *ngIf="order$ | async as order">
+  <mat-card *ngFor="let orderItem of order.orderItems" style="margin: 10px">
+    <div *ngIf="getItem(orderItem.itemId) | async as item">
+      <div class="flex-row" style="justify-content: space-between">
+        <mat-card-header>
+          <img mat-card-avatar [src]="item.picture" alt="Photo of food" />
+          <mat-card-title>{{ item.name }}</mat-card-title>
+          <mat-card-subtitle>
+            {{ item.price | currency: "HRK" }}</mat-card-subtitle
+          >
+        </mat-card-header>
+        <div>
+          <button mat-button color="primary" (click)="addToOrder(item)">
+            +
+          </button>
+          {{ orderItem.amount }}
+          <button mat-button color="primary" (click)="removeFromOrder(item)">
+            -
+          </button>
+        </div>
+        <div>{{ orderItem.amount * item.price | currency: "HRK" }}</div>
+      </div>
+    </div>
+  </mat-card>
+  <div class="flex-row" style="margin: 25px; justify-content: space-between">
+    <mat-card-header>
+      <mat-card-title>Total</mat-card-title>
+    </mat-card-header>
+    <div>{{ getTotal() | async | currency: "HRK" }}</div>
   </div>
-</mat-card>
-
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="confirmOrder(order)"
+    *ngIf="order.orderItems.length > 0"
+  >
+    Confirm order
+  </button>
+</div>

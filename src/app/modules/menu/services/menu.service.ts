@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { IItem } from 'src/app/shared/models/IItem.model';
+import { Item } from 'src/app/shared/models/Item.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MenuService {
-  private menu$ = new BehaviorSubject<IItem[]>([]);
+  private menu$ = new BehaviorSubject<Item[]>([]);
 
   constructor() {}
 
-  setMenu(items: IItem[]) {
+  setMenu(items: Item[]) {
     this.menu$.next(items);
   }
 
   getMenu() {
-    return this.menu$.asObservable;
+    return this.menu$.asObservable();
   }
 
   getItem(itemId: number) {
