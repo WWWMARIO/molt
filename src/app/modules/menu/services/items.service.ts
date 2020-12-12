@@ -6,16 +6,16 @@ import { Item } from 'src/app/shared/models/Item.model';
 @Injectable({
   providedIn: 'root',
 })
-export class MenuService {
+export class ItemsService {
   private menu$ = new BehaviorSubject<Item[]>([]);
 
   constructor() {}
 
-  setMenu(items: Item[]) {
+  setItems(items: Item[]) {
     this.menu$.next(items);
   }
 
-  getMenu() {
+  getItems() {
     return this.menu$.asObservable();
   }
 

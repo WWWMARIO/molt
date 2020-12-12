@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 
 import { MatBadgeModule } from '@angular/material/badge';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [],
@@ -30,6 +31,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatIconModule,
     MatBadgeModule,
     MatListModule,
+    ReactiveFormsModule,
   ],
   exports: [
     CommonModule,
@@ -44,6 +46,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatIconModule,
     MatBadgeModule,
     MatListModule,
+    ReactiveFormsModule,
   ],
 })
 export class SharedModule {}

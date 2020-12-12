@@ -5,7 +5,8 @@ import { distinctUntilChanged } from 'rxjs/operators';
 import { OrderService } from 'src/app/modules/core/services/order.service';
 import { Item } from 'src/app/shared/models/Item.model';
 import { EditItemComponent } from '../../components/edit-item/edit-item.component';
-import { ApiMenuService } from '../../services/api-menu.service';
+import { ApiItemsService } from '../../services/api-items.service';
+import { ItemsService } from '../../services/items.service';
 
 @Component({
   selector: 'app-menu',
@@ -16,13 +17,15 @@ export class MenuComponent implements OnInit {
   menuItems: Observable<Item[]>;
 
   constructor(
-    private apiMenuService: ApiMenuService,
+    private apiItemsService: ApiItemsService,
+    private itemsService: ItemsService,
     private orderService: OrderService,
     private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
-    this.menuItems = this.apiMenuService.getItems();
+    this.apiItemsService.getItems().subscribe();
+    this.menuItems = this.itemsService.getItems();
   }
 
   getItemAmount(item: Item) {
@@ -39,14 +42,19 @@ export class MenuComponent implements OnInit {
 
   editItem(item: Item) {
     const dialogRef = this.dialog.open(EditItemComponent, {
-      height: '90%',
+      // height: '90%',
       width: '90%',
       data: item,
     });
-    dialogRef.afterClosed().subscribe((result) => {
+    /* dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
-    });
+    }); */
   }
 
-  newItem() {}
+  newItem() {
+    const dialogRef = this.dialog.open(EditItemComponent, {
+      // height: '90%',
+      width: '90%',
+    });
+  }
 }

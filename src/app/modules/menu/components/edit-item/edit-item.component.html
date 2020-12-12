@@ -1,1 +1,73 @@
-<p>edit-item works!</p>
+<mat-card-header>
+  <mat-card-title>{{ data ? "Edit item" : "New item" }}</mat-card-title>
+</mat-card-header>
+<form [formGroup]="itemForm" class="flex-column">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="name"
+      placeholder="Item name"
+    />
+    <mat-error *ngIf="itemForm.controls.name.hasError('required')">
+      Please enter item name
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Price</mat-label>
+    <input
+      type="number"
+      matInput
+      formControlName="price"
+      placeholder="Item price"
+    />
+    <mat-error *ngIf="itemForm.controls.price.hasError('required')">
+      Please enter item price
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="description"
+      placeholder="Item description"
+    />
+    <mat-error *ngIf="itemForm.controls.description.hasError('required')">
+      Please enter item description
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Picture url</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="picture"
+      placeholder="Item picture url"
+    />
+    <mat-error *ngIf="itemForm.controls.picture.hasError('required')">
+      Please enter item picture url
+    </mat-error>
+  </mat-form-field>
+</form>
+<button
+  mat-raised-button
+  (click)="onSave()"
+  color="primary"
+  [disabled]="loading"
+>
+  {{ data ? "Save changes" : "Create new item" }}
+</button>
+<button
+  *ngIf="data"
+  mat-raised-button
+  (click)="onDelete()"
+  color="warning"
+  [disabled]="loading"
+>
+  Delete item
+</button>

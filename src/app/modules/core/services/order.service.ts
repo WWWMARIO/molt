@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { Item } from 'src/app/shared/models/Item.model';
 import { Order } from 'src/app/shared/models/Order.model';
 import { OrderItem } from 'src/app/shared/models/OrderItem.model';
-import { MenuService } from '../../menu/services/menu.service';
+import { ItemsService } from '../../menu/services/items.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,7 @@ import { MenuService } from '../../menu/services/menu.service';
 export class OrderService {
   private order = new BehaviorSubject<Order>(new Order(44, []));
 
-  constructor(private menuService: MenuService) {}
+  constructor(private itemsService: ItemsService) {}
 
   getOrder() {
     return this.order.asObservable();
@@ -44,7 +44,7 @@ export class OrderService {
   }
 
   getTotal() {
-    return combineLatest([this.menuService.getMenu(), this.getOrder()]).pipe(
+    return combineLatest([this.itemsService.getItems(), this.getOrder()]).pipe(
       map(([menu, order]) => {
         return order.orderItems.reduce((total, item) => {
           const price = menu.find((i) => {

@@ -33,8 +33,6 @@ import { PageNotFoundComponent } from './modules/core/page-not-found/page-not-fo
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule,
-    ReactiveFormsModule,
     HttpClientModule,
     SharedModule,
     LayoutModule,

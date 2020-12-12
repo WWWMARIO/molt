@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Item } from 'src/app/shared/models/Item.model';
 import { Order } from 'src/app/shared/models/Order.model';
 import { OrderService } from '../../core/services/order.service';
-import { MenuService } from '../../menu/services/menu.service';
+import { ItemsService } from '../../menu/services/items.service';
 import { ApiOrderService } from '../api-orders.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class ReviewOrderModalComponent implements OnInit {
   constructor(
     private orderService: OrderService,
     private apiOrderService: ApiOrderService,
-    private menuService: MenuService
+    private itemsService: ItemsService
   ) {}
 
   ngOnInit(): void {
@@ -25,7 +25,7 @@ export class ReviewOrderModalComponent implements OnInit {
   }
 
   getItem(itemId: number) {
-    return this.menuService.getItem(itemId);
+    return this.itemsService.getItem(itemId);
   }
 
   getTotal() {
