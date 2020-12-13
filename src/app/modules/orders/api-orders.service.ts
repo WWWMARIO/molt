@@ -17,4 +17,14 @@ export class ApiOrderService {
       })
     );
   }
+
+  getOrders() {
+    return this.http.get<Order[]>(`${API_BASE_URL}/orders`).pipe(
+      tap((items) => {
+        this.orderService.setItems(items);
+      })
+    );
+  }
+
+  getItems() {}
 }

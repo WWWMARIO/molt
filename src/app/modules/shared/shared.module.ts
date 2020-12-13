@@ -10,11 +10,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-
 import { MatListModule } from '@angular/material/list';
-
 import { MatBadgeModule } from '@angular/material/badge';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [],
@@ -32,6 +31,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatBadgeModule,
     MatListModule,
     ReactiveFormsModule,
+    MatTableModule,
   ],
   exports: [
     CommonModule,
@@ -47,6 +47,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatBadgeModule,
     MatListModule,
     ReactiveFormsModule,
+    MatTableModule,
   ],
 })
 export class SharedModule {}

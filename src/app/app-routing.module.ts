@@ -18,6 +18,11 @@ const routes: Routes = [
     component: ShellComponent,
     children: [
       {
+        path: 'orders',
+        loadChildren: () =>
+          import('./modules/orders/orders.module').then((m) => m.OrdersModule),
+      },
+      {
         path: 'menu',
         loadChildren: () =>
           import('./modules/menu/menu.module').then((m) => m.MenuModule),
@@ -33,7 +38,7 @@ const routes: Routes = [
     path: 'welcome',
     component: WelcomeComponent,
   },
-  { path: 'orders', loadChildren: () => import('./modules/orders/orders.module').then(m => m.OrdersModule) },
+
   {
     path: '**',
     component: PageNotFoundComponent,
