@@ -9,8 +9,8 @@ import { ItemsService } from '../../menu/services/items.service';
 @Injectable({
   providedIn: 'root',
 })
-export class OrderService {
-  private order = new BehaviorSubject<Order>(new Order(44, []));
+export class CurrentOrderService {
+  private order = new BehaviorSubject<Order>(new Order(60, []));
 
   constructor(private itemsService: ItemsService) {}
 

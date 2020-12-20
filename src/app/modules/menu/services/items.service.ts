@@ -7,20 +7,20 @@ import { Item } from 'src/app/shared/models/Item.model';
   providedIn: 'root',
 })
 export class ItemsService {
-  private menu$ = new BehaviorSubject<Item[]>([]);
+  private items$ = new BehaviorSubject<Item[]>([]);
 
   constructor() {}
 
-  setItems(items: Item[]) {
-    this.menu$.next(items);
+  setItems(newItems: Item[]) {
+    this.items$.next(newItems);
   }
 
   getItems() {
-    return this.menu$.asObservable();
+    return this.items$.asObservable();
   }
 
   getItem(itemId: number) {
-    return this.menu$.pipe(
+    return this.items$.pipe(
       map((items) => {
         return items.find((item) => {
           return item.id === itemId;

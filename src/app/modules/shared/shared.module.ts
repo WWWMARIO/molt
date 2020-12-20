@@ -14,6 +14,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [],
@@ -32,6 +33,7 @@ import { MatTableModule } from '@angular/material/table';
     MatListModule,
     ReactiveFormsModule,
     MatTableModule,
+    MatSortModule,
   ],
   exports: [
     CommonModule,
@@ -48,6 +50,7 @@ import { MatTableModule } from '@angular/material/table';
     MatListModule,
     ReactiveFormsModule,
     MatTableModule,
+    MatSortModule,
   ],
 })
 export class SharedModule {}

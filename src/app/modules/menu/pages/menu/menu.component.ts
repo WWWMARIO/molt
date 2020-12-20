@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
-import { OrderService } from 'src/app/modules/core/services/order.service';
+import { CurrentOrderService } from 'src/app/modules/core/services/current-order.service';
 import { Item } from 'src/app/shared/models/Item.model';
 import { EditItemComponent } from '../../components/edit-item/edit-item.component';
 import { ApiItemsService } from '../../services/api-items.service';
@@ -19,7 +19,7 @@ export class MenuComponent implements OnInit {
   constructor(
     private apiItemsService: ApiItemsService,
     private itemsService: ItemsService,
-    private orderService: OrderService,
+    private currentOrderService: CurrentOrderService,
     private dialog: MatDialog
   ) {}
 
@@ -29,15 +29,17 @@ export class MenuComponent implements OnInit {
   }
 
   getItemAmount(item: Item) {
-    return this.orderService.getItemAmount(item).pipe(distinctUntilChanged());
+    return this.currentOrderService
+      .getItemAmount(item)
+      .pipe(distinctUntilChanged());
   }
 
   addToOrder(item: Item) {
-    this.orderService.addToOrder(item);
+    this.currentOrderService.addToOrder(item);
   }
 
   removeFromOrder(item: Item) {
-    this.orderService.removeFromOrder(item);
+    this.currentOrderService.removeFromOrder(item);
   }
 
   editItem(item: Item) {

@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { Item } from 'src/app/shared/models/Item.model';
+import { tap } from 'rxjs/operators';
+// import { Item } from 'src/app/shared/models/Item.model';
 import { Order } from 'src/app/shared/models/Order.model';
-import { OrderService } from '../../core/services/order.service';
 import { ItemsService } from '../../menu/services/items.service';
-import { ApiOrderService } from '../api-orders.service';
+// import { CurrentOrderService } from '../../core/services/current-order.service';
+// import { ItemsService } from '../../menu/services/items.service';
+// import { ApiOrderService } from '../api-orders.service';
 
 @Component({
   selector: 'app-review-order-modal',
@@ -12,35 +15,22 @@ import { ApiOrderService } from '../api-orders.service';
   styleUrls: ['./review-order-modal.component.scss'],
 })
 export class ReviewOrderModalComponent implements OnInit {
-  order$: Observable<Order>;
+  order: Order;
 
   constructor(
-    private orderService: OrderService,
-    private apiOrderService: ApiOrderService,
-    private itemsService: ItemsService
+    // private currentOrderService: CurrentOrderService,
+    // private apiOrderService: ApiOrderService,
+    private itemsService: ItemsService,
+    @Inject(MAT_DIALOG_DATA) public data: Order,
   ) {}
 
   ngOnInit(): void {
-    this.order$ = this.orderService.getOrder();
+    this.order = this.data;
   }
 
   getItem(itemId: number) {
     return this.itemsService.getItem(itemId);
   }
 
-  getTotal() {
-    return this.orderService.getTotal();
-  }
 
-  addToOrder(item: Item) {
-    this.orderService.addToOrder(item);
-  }
-
-  removeFromOrder(item: Item) {
-    this.orderService.removeFromOrder(item);
-  }
-
-  confirmOrder(order: Order) {
-    this.apiOrderService.newOrder(order).subscribe();
-  }
 }

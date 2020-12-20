@@ -4,8 +4,9 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { map, shareReplay, take } from 'rxjs/operators';
+import { EditOrderModalComponent } from '../../orders/edit-order-modal/edit-order-modal.component';
 import { ReviewOrderModalComponent } from '../../orders/review-order-modal/review-order-modal.component';
-import { OrderService } from '../services/order.service';
+import { CurrentOrderService } from '../services/current-order.service';
 
 @Component({
   selector: 'app-shell',
@@ -24,25 +25,25 @@ export class ShellComponent implements OnInit {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private orderService: OrderService,
+    private currentOrderService: CurrentOrderService,
     private dialog: MatDialog,
     private snackbar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
-    this.numberOfItemsOnOrder$ = this.orderService.getTotalNumberOfItemsOnOrder();
+    this.numberOfItemsOnOrder$ = this.currentOrderService.getTotalNumberOfItemsOnOrder();
   }
 
   viewOrder() {
     this.numberOfItemsOnOrder$.pipe(take(1)).subscribe((number) => {
       if (number > 0) {
-        const dialogRef = this.dialog.open(ReviewOrderModalComponent, {
+        const dialogRef = this.dialog.open(EditOrderModalComponent, {
           height: '90%',
           width: '90%',
         });
-        dialogRef.afterClosed().subscribe((result) => {
+        /* dialogRef.afterClosed().subscribe((result) => {
           console.log(`Dialog result: ${result}`);
-        });
+        }); */
       } else {
         this.snackbar.open('Order is empty', '', {
           duration: 3000,

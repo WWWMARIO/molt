@@ -1,22 +1,8 @@
 <mat-card-header>
-  <mat-card-title>User</mat-card-title>
-</mat-card-header>
-<mat-card-content class="flex-column" style="width:60%; margin-left:100px">
-  <div class="flex-row user-row"><div>User:</div> {{order.user.firstName}} {{order.user.lastName}}</div>
-<div  class="flex-row user-row"><div>Address:</div> {{order.user.address}}</div>
-<div  class="flex-row user-row"><div>Phone number: </div>{{order.user.phoneNumber}}</div>
-<div  class="flex-row user-row"><div>E-mail: </div>{{order.user.email}}</div>
-<div  class="flex-row user-row"><div>Time stamp: </div>{{order.createdAt | date: "dd/MM/yyyy, HH:mm" }}</div>
-</mat-card-content>
-
-
-
-
-<mat-card-header>
-  <mat-card-title>Order</mat-card-title>
+  <mat-card-title>Review order</mat-card-title>
 </mat-card-header>
 
-<div *ngIf="order">
+<div *ngIf="order$ | async as order">
   <mat-card *ngFor="let orderItem of order.orderItems" style="margin: 10px">
     <div *ngIf="getItem(orderItem.itemId) | async as item">
       <div class="flex-row" style="justify-content: space-between">
@@ -28,7 +14,13 @@
           >
         </mat-card-header>
         <div>
+          <button mat-button color="primary" (click)="addToOrder(item)">
+            +
+          </button>
           {{ orderItem.amount }}
+          <button mat-button color="primary" (click)="removeFromOrder(item)">
+            -
+          </button>
         </div>
         <div>{{ orderItem.amount * item.price | currency: "HRK" }}</div>
       </div>
@@ -38,6 +30,14 @@
     <mat-card-header>
       <mat-card-title>Total</mat-card-title>
     </mat-card-header>
-    <div>{{ order.total | currency: "HRK" }}</div>
+    <div>{{ getTotal() | async | currency: "HRK" }}</div>
   </div>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="confirmOrder(order)"
+    *ngIf="order.orderItems.length > 0"
+  >
+    Confirm order
+  </button>
 </div>
