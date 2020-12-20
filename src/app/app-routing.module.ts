@@ -28,10 +28,16 @@ const routes: Routes = [
           import('./modules/menu/menu.module').then((m) => m.MenuModule),
       },
       {
+        path: 'users',
+        loadChildren: () =>
+          import('./modules/users/users.module').then((m) => m.UsersModule),
+      },
+      {
         path: '',
         redirectTo: 'menu',
         pathMatch: 'full',
       },
+
     ],
   },
   {

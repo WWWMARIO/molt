@@ -4,8 +4,8 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { map, shareReplay, take } from 'rxjs/operators';
-import { EditOrderModalComponent } from '../../orders/edit-order-modal/edit-order-modal.component';
-import { ReviewOrderModalComponent } from '../../orders/review-order-modal/review-order-modal.component';
+import { EditOrderModalComponent } from '../../orders/components/edit-order-modal/edit-order-modal.component';
+import { ReviewOrderModalComponent } from '../../orders/components/edit-order-modal/review-order-modal/review-order-modal.component';
 import { CurrentOrderService } from '../services/current-order.service';
 
 @Component({

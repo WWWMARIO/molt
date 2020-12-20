@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Item } from 'src/app/shared/models/Item.model';
 import { Order } from 'src/app/shared/models/Order.model';
-import { CurrentOrderService } from '../../core/services/current-order.service';
-import { ItemsService } from '../../menu/services/items.service';
-import { ApiOrderService } from '../api-orders.service';
+import { CurrentOrderService } from '../../../core/services/current-order.service';
+import { ItemsService } from '../../../menu/services/items.service';
+import { ApiOrderService } from '../../api-orders.service';
 
 @Component({
   selector: 'app-edit-order-modal',

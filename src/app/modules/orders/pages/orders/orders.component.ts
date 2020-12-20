@@ -4,10 +4,10 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { Order } from 'src/app/shared/models/Order.model';
-import { OrdersService } from '../../core/services/orders.service';
-import { ApiItemsService } from '../../menu/services/api-items.service';
-import { ApiOrderService } from '../api-orders.service';
-import { ReviewOrderModalComponent } from '../review-order-modal/review-order-modal.component';
+import { ApiItemsService } from '../../../menu/services/api-items.service';
+import { ApiOrderService } from '../../api-orders.service';
+import { ReviewOrderModalComponent } from '../../components/edit-order-modal/review-order-modal/review-order-modal.component';
+import { OrdersService } from '../../orders.service';
 
 @Component({
   selector: 'app-orders',

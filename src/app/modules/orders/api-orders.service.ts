@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { Order } from 'src/app/shared/models/Order.model';
 import { API_BASE_URL } from 'src/environments/environment';
-import { OrdersService } from '../core/services/orders.service';
+import { OrdersService } from './orders.service';
 
 @Injectable({
   providedIn: 'root',
