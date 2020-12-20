@@ -6,7 +6,7 @@ export const environment = {
   production: false
 };
 
-
+export const APP_TITLE = "molt"
 export const API_BASE_URL = "http://localhost:3000"
 
 /*

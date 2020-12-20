@@ -1,11 +1,11 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { map, shareReplay, take } from 'rxjs/operators';
+import { APP_TITLE } from 'src/environments/environment';
 import { EditOrderModalComponent } from '../../orders/components/edit-order-modal/edit-order-modal.component';
-import { ReviewOrderModalComponent } from '../../orders/components/edit-order-modal/review-order-modal/review-order-modal.component';
 import { CurrentOrderService } from '../services/current-order.service';
 
 @Component({
@@ -14,6 +14,7 @@ import { CurrentOrderService } from '../services/current-order.service';
   styleUrls: ['./shell.component.scss'],
 })
 export class ShellComponent implements OnInit {
+  appTitle = APP_TITLE;
   numberOfItemsOnOrder$: Observable<number>;
 
   isHandset$: Observable<boolean> = this.breakpointObserver

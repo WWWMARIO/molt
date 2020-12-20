@@ -1,0 +1,83 @@
+<mat-card style="margin:20px">
+  <mat-card-header>
+    <mat-card-title style="margin: 30px">User details</mat-card-title>
+  </mat-card-header>
+
+  <form *ngIf="userForm" [formGroup]="userForm" class="flex-row" style="justify-content: space-between">
+    <mat-form-field>
+      <mat-label>First name</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="firstName"
+        placeholder="First name"
+      />
+      <mat-error *ngIf="userForm.controls.firstName.hasError('required')">
+        Please enter your first name
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Last name</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="lastName"
+        placeholder="Last name"
+      />
+      <mat-error *ngIf="userForm.controls.lastName.hasError('required')">
+        Please enter your last name
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Address</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="address"
+        placeholder="Full address"
+      />
+      <mat-error *ngIf="userForm.controls.address.hasError('required')">
+        Please enter your full address
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Phone number</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="phoneNumber"
+        placeholder="Phone number"
+      />
+      <mat-error *ngIf="userForm.controls.phoneNumber.hasError('required')">
+        Please enter your phone number
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input
+        type="email"
+        matInput
+        formControlName="email"
+        placeholder="Ex. pat@example.com"
+      />
+      <mat-error
+        *ngIf="
+          userForm.controls.email.hasError('email') &&
+          !userForm.controls.email.hasError('required')
+        "
+      >
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="userForm.controls.email.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+
+  </form>
+  <div>
+    <button mat-raised-button (click)="onSignUp()" color="primary">
+      Log in
+    </button>
+  </div>
+</mat-card>

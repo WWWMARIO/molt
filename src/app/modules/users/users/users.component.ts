@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/shared/models/User.model';
 import { ApiUsersService } from '../api-users.service';
@@ -18,7 +19,8 @@ export class UsersComponent implements OnInit {
     'lastName',
     'address',
     'phoneNumber',
-    'createdAt'
+    'createdAt',
+    'details'
   ];
 
 
@@ -29,7 +31,8 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private apiUsersService: ApiUsersService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -39,6 +42,10 @@ export class UsersComponent implements OnInit {
       this.dataSource.data = response;
       this.dataSource.sort = this.sort;
     });
+  }
+
+  viewUserDetails(user: User) {
+    this.router.navigate([`/users/${user.id}`])
   }
 
 }

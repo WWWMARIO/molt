@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import {  APP_TITLE } from 'src/environments/environment';
 import { LogInComponent } from '../log-in/log-in.component';
 import { SignUpComponent } from '../sign-up/sign-up.component';
 
@@ -11,6 +12,7 @@ import { SignUpComponent } from '../sign-up/sign-up.component';
 export class WelcomeComponent implements OnInit {
 
   constructor(private dialog: MatDialog) { }
+  appTitle = APP_TITLE
 
   ngOnInit(): void {
   }
