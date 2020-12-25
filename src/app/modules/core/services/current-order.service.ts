@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Item } from 'src/app/shared/models/Item.model';
-import { Order } from 'src/app/shared/models/Order.model';
-import { OrderItem } from 'src/app/shared/models/OrderItem.model';
+import { Item } from 'src/app/modules/shared/models/Item.model';
+import { Order } from 'src/app/modules/shared/models/Order.model';
+import { OrderItem } from 'src/app/modules/shared/models/OrderItem.model';
 import { ItemsService } from '../../menu/services/items.service';
 
 @Injectable({

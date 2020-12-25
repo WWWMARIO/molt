@@ -1,7 +1,7 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Item } from 'src/app/shared/models/Item.model';
+import { Item } from 'src/app/modules/shared/models/Item.model';
 import { ApiItemsService } from '../../services/api-items.service';
 
 @Component({

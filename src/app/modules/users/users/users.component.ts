@@ -3,7 +3,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/shared/models/User.model';
+import { User } from '../../shared/models/User.model';
 import { ApiUsersService } from '../api-users.service';
 import { UsersService } from '../users.service';
 

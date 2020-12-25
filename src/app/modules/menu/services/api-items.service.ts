@@ -2,7 +2,7 @@ import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { API_BASE_URL } from 'src/environments/environment';
 import { tap } from 'rxjs/operators';
-import { Item } from 'src/app/shared/models/Item.model';
+import { Item } from 'src/app/modules/shared/models/Item.model';
 import { ItemsService } from './items.service';
 
 @Injectable({

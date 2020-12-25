@@ -15,11 +15,14 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { OrdersListComponent } from './components/orders-list/orders-list.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [OrdersListComponent],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
+
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
@@ -31,12 +34,13 @@ import { MatSortModule } from '@angular/material/sort';
     MatIconModule,
     MatBadgeModule,
     MatListModule,
-    ReactiveFormsModule,
     MatTableModule,
     MatSortModule,
+
   ],
   exports: [
     CommonModule,
+
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
@@ -51,6 +55,7 @@ import { MatSortModule } from '@angular/material/sort';
     ReactiveFormsModule,
     MatTableModule,
     MatSortModule,
+    OrdersListComponent
   ],
 })
 export class SharedModule {}

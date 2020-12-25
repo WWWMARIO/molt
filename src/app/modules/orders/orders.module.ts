@@ -11,7 +11,7 @@ import { EditOrderModalComponent } from './components/edit-order-modal/edit-orde
   declarations: [
     OrdersComponent,
     ReviewOrderModalComponent,
-    EditOrderModalComponent
+    EditOrderModalComponent,
   ],
   imports: [CommonModule, OrdersRoutingModule, SharedModule],
 })

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
-import { Order } from 'src/app/shared/models/Order.model';
+import { Order } from 'src/app/modules/shared/models/Order.model';
 import { API_BASE_URL } from 'src/environments/environment';
 import { OrdersService } from './orders.service';
 
@@ -26,5 +26,9 @@ export class ApiOrderService {
         this.ordersService.setOrders(orders);
       })
     );
+  }
+
+  getOrdersForUser(userId: number) {
+    return this.http.get<Order[]>(`${API_BASE_URL}/orders/foruser/${userId}`).pipe(tap((orders)=>console.log(orders)));
   }
 }

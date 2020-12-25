@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Order } from 'src/app/shared/models/Order.model';
+import { Order } from 'src/app/modules/shared/models/Order.model';
 
 @Injectable({
   providedIn: 'root',

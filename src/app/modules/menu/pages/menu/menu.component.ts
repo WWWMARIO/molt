@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { CurrentOrderService } from 'src/app/modules/core/services/current-order.service';
-import { Item } from 'src/app/shared/models/Item.model';
+import { Item } from 'src/app/modules/shared/models/Item.model';
 import { EditItemComponent } from '../../components/edit-item/edit-item.component';
 import { ApiItemsService } from '../../services/api-items.service';
 import { ItemsService } from '../../services/items.service';
