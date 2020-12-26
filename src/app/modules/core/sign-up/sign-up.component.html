@@ -82,5 +82,12 @@
     </mat-error>
   </mat-form-field>
 
-  <button mat-raised-button (click)="onSignUp()" color="primary">Log in</button>
+  <div class="flex-row" style="justify-content: space-between; width: 100%">
+    <button mat-raised-button (click)="onCancel()" color="primary">
+      Cancel
+    </button>
+    <button mat-raised-button (click)="onSignUp()" color="primary">
+      Sign up
+    </button>
+  </div>
 </form>

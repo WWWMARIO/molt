@@ -1,8 +1,11 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
+import { Category } from 'src/app/modules/categories/page/categories/categories.component';
 import { Item } from 'src/app/modules/shared/models/Item.model';
 import { ApiItemsService } from '../../services/api-items.service';
+import { ApiCategoryService } from 'src/app/modules/categories/api-category.service';
 
 @Component({
   selector: 'app-edit-item',
@@ -12,15 +15,19 @@ import { ApiItemsService } from '../../services/api-items.service';
 export class EditItemComponent implements OnInit {
   loading = false;
   itemForm: FormGroup;
+  categories$: Observable<Category[]>;
 
   constructor(
     public dialogRef: MatDialogRef<EditItemComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Item,
     private formBuilder: FormBuilder,
-    private apiItemsService: ApiItemsService
+    private apiItemsService: ApiItemsService,
+    private apiCategoryService: ApiCategoryService
   ) {}
 
   ngOnInit(): void {
+    this.apiCategoryService.refreshCategories().subscribe();
+    this.categories$ = this.apiCategoryService.getCategories();
     if (this.data) {
       this.itemForm = this.formBuilder.group({
         id: this.data.id,
@@ -28,12 +35,14 @@ export class EditItemComponent implements OnInit {
         price: [this.data.price, [Validators.required, Validators.min(0.01)]],
         description: [this.data.description, [Validators.required]],
         picture: [this.data.picture, [Validators.required]],
+        categoryId: [this.data.categoryId, [Validators.required]]
       });
     } else {
       this.itemForm = this.formBuilder.group({
         name: ['', [Validators.required]],
         price: ['', [Validators.required]],
         description: ['', [Validators.required]],
+        categoryId: [undefined, [Validators.required]],
         picture: [
           'https://derdafoods.com/static/backend/img/meal-placeholder.jpg',
           [Validators.required],
@@ -43,7 +52,6 @@ export class EditItemComponent implements OnInit {
   }
 
   onSave() {
-    console.log(this.data);
     if (this.itemForm.valid && this.data) {
       this.loading = true;
       this.apiItemsService.updateItem(this.itemForm.value).subscribe((resp) => {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import {  APP_TITLE } from 'src/environments/environment';
 import { LogInComponent } from '../log-in/log-in.component';
 import { SignUpComponent } from '../sign-up/sign-up.component';
@@ -11,7 +11,9 @@ import { SignUpComponent } from '../sign-up/sign-up.component';
 })
 export class WelcomeComponent implements OnInit {
 
-  constructor(private dialog: MatDialog) { }
+  constructor(
+    private dialog: MatDialog,
+    ) { }
   appTitle = APP_TITLE
 
   ngOnInit(): void {
@@ -19,8 +21,7 @@ export class WelcomeComponent implements OnInit {
 
 
   onLogIn(){
-
-    const dialogRef = this.dialog.open(LogInComponent);
+    const dialogRef = this.dialog.open(LogInComponent, { disableClose: true });
 
     /* dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -29,7 +30,7 @@ export class WelcomeComponent implements OnInit {
 
   onSignUp(){
 
-    const dialogRef = this.dialog.open(SignUpComponent);
+    const dialogRef = this.dialog.open(SignUpComponent, { disableClose: true });
   }
 
 }

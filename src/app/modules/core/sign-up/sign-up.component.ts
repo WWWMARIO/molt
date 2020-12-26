@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-sign-up',
@@ -9,7 +10,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private dialogRef: MatDialogRef<SignUpComponent>) { }
 
   ngOnInit(): void {
     this.signUpForm = this.formBuilder.group({
@@ -26,6 +29,10 @@ export class SignUpComponent implements OnInit {
 
   onSignUp() {
     console.log(this.signUpForm.value)
+  }
+
+  onCancel(): void {
+    this.dialogRef.close();
   }
 
 }

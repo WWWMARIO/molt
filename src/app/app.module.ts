@@ -9,7 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { WelcomeComponent } from './modules/core/welcome/welcome.component';
 import { LogInComponent } from './modules/core/log-in/log-in.component';
 import { SignUpComponent } from './modules/core/sign-up/sign-up.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SharedModule } from './modules/shared/shared.module';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -19,6 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { ShellComponent } from './modules/core/shell/shell.component';
 import { PageNotFoundComponent } from './modules/core/page-not-found/page-not-found.component';
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -36,13 +37,12 @@ import { PageNotFoundComponent } from './modules/core/page-not-found/page-not-fo
     HttpClientModule,
     SharedModule,
     LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
   ],
-  providers: [],
+  providers: [ {
+    provide : HTTP_INTERCEPTORS,
+    useClass : AuthInterceptor,
+    multi : true
+ }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

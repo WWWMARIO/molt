@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthInterceptor } from './auth/auth.interceptor';
 import { PageNotFoundComponent } from './modules/core/page-not-found/page-not-found.component';
 import { ShellComponent } from './modules/core/shell/shell.component';
 import { WelcomeComponent } from './modules/core/welcome/welcome.component';
@@ -37,13 +38,21 @@ const routes: Routes = [
         redirectTo: 'menu',
         pathMatch: 'full',
       },
-
+      {
+        path: 'categories',
+        loadChildren: () =>
+          import('./modules/categories/categories.module').then(
+            (m) => m.CategoriesModule
+          ),
+      },
     ],
+
   },
   {
     path: 'welcome',
     component: WelcomeComponent,
   },
+
 
   {
     path: '**',

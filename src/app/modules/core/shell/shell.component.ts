@@ -7,6 +7,7 @@ import { map, shareReplay, take } from 'rxjs/operators';
 import { APP_TITLE } from 'src/environments/environment';
 import { EditOrderModalComponent } from '../../orders/components/edit-order-modal/edit-order-modal.component';
 import { CurrentOrderService } from '../services/current-order.service';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-shell',
@@ -28,7 +29,8 @@ export class ShellComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     private currentOrderService: CurrentOrderService,
     private dialog: MatDialog,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private loginService: LoginService
   ) {}
 
   ngOnInit(): void {
@@ -52,4 +54,9 @@ export class ShellComponent implements OnInit {
       }
     });
   }
+
+  logout() {
+    this.loginService.logOut();
+  }
+
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
 
 @Component({
@@ -15,7 +17,9 @@ export class LogInComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private loginService: LoginService,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+    private router: Router,
+    private dialogRef: MatDialogRef<LogInComponent>) { }
 
   ngOnInit(): void {
     this.logInForm = this.formBuilder.group({
@@ -27,7 +31,9 @@ export class LogInComponent implements OnInit {
 
   onLogIn() {
     this.loginService.logIn(this.logInForm.value).subscribe(resp => {
-      console.log(resp)
+      this.dialogRef.close();
+      this.router.navigate(['/menu']);
+
     }, err => {
       this.snackBar.open('Invalid username or password', '', {
         duration: 3000
@@ -35,5 +41,9 @@ export class LogInComponent implements OnInit {
 
     })
 
+  }
+
+  onCancel(): void {
+    this.dialogRef.close();
   }
 }
