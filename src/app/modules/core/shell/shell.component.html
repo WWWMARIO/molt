@@ -46,11 +46,15 @@
           mat-mini-fab
           [matMenuTriggerFor]="menu"
         >
-          <mat-icon>person</mat-icon>
+          <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="viewProfile(user.id)">View profile</button>
-          <button mat-menu-item (click)="logout()">Log out</button>
+          <button mat-menu-item (click)="viewProfile(user.id)">
+            <mat-icon>person</mat-icon><span>View profile</span>
+          </button>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon><span>Log out</span>
+          </button>
         </mat-menu>
       </div>
     </mat-toolbar>

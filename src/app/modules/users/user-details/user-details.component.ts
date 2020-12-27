@@ -37,7 +37,7 @@ export class UserDetailsComponent implements OnInit {
     this.apiUsersService.getUser(this.userId).subscribe((user: User) => {
       this.userForm = this.createUserForm(user);
     });
-    this.apiOrderService.getOrders().subscribe();
+    // this.apiOrderService.getOrders().subscribe();
     this.userOrders$ = this.apiOrderService.getOrdersForUser(this.userId);
   }
 

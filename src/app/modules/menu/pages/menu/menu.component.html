@@ -1,20 +1,47 @@
 <mat-card>
-  <div class="flex-row">
+  <div class="flex-row" >
     <mat-card-header>
       <mat-card-title style="margin: 30px">Menu</mat-card-title>
     </mat-card-header>
-    <button
-      style="margin-left: auto"
-      (click)="newItem()"
-      color="accent"
-      mat-mini-fab
-    >
-      <mat-icon>add</mat-icon>
-    </button>
+    <div style="margin-left: auto">
+      <mat-form-field
+        appearance="fill"
+        *ngIf="categoriesList$ | async as categoriesList"
+      >
+        <mat-label>Foot categories</mat-label>
+        <mat-select [formControl]="categories" multiple>
+          <mat-select-trigger *ngIf="categories?.value?.length === categoriesList?.length">Filter by category</mat-select-trigger>
+          <!-- <mat-select-trigger>
+            {{ categories.value ? categories.value[0].name : "" }}
+            <span
+              *ngIf="categories.value?.length > 1"
+              class="example-additional-selection"
+            >
+              (+{{ categories.value.length - 1 }}
+              {{ categories.value?.length === 2 ? "other" : "others" }})
+            </span>
+          </mat-select-trigger> -->
+          <mat-option
+            *ngFor="let category of categoriesList"
+            [value]="category"
+            >{{ category.name }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+
+      <button
+        style="margin-left: 20px"
+        (click)="newItem()"
+        color="accent"
+        mat-mini-fab
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
   </div>
   <div style="display: flex; flex-direction: row">
     <mat-card
-      *ngFor="let item of menuItems | async"
+      *ngFor="let item of menuItems | async | menuItemFilter: categories?.value"
       class="example-card"
       style="margin: 10px"
     >

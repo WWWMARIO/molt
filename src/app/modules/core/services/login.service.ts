@@ -19,19 +19,15 @@ export interface LogInInfo {
   providedIn: 'root',
 })
 export class LoginService {
-
   private loggedInUser = new BehaviorSubject<LogInInfo>(undefined);
 
   constructor(
-    private http: HttpClient, private router: Router,
-    private currentOrderService: CurrentOrderService) {
-    const userInfo: string = localStorage.getItem('logInInfo');
-    if (userInfo) {
-      this.loggedInUser.next(JSON.parse(userInfo));
-    }
-  }
+    private http: HttpClient,
+    private router: Router,
+    private currentOrderService: CurrentOrderService
+  ) {}
 
-  public get loggedInUser$ () {
+  public get loggedInUser$() {
     return this.loggedInUser;
   }
 
@@ -45,8 +41,7 @@ export class LoginService {
     console.log(expirationDate)
     const isExpired = helper.isTokenExpired(logInInfo.token);
     console.log(isExpired) */
-
-    return !helper.isTokenExpired(logInInfo.token);
+    return !helper.isTokenExpired(logInInfo?.token);
   }
 
   storeLogInInfo(logInInfo: LogInInfo) {
@@ -61,8 +56,8 @@ export class LoginService {
     return this.http.post<LogInInfo>(`${API_BASE_URL}/login`, reqBody).pipe(
       tap((logInInfo: LogInInfo) => {
         this.loggedInUser.next(logInInfo);
+        this.currentOrderService.resetOrder(logInInfo.id);
         this.storeLogInInfo(logInInfo);
-        this.currentOrderService.resetOrder(logInInfo.id)
       })
     );
   }
@@ -78,5 +73,15 @@ export class LoginService {
         return this.logIn({ email: user.email, password: user.password });
       })
     );
+  }
+
+  startup() {
+    if (this.isTokenValid()) {
+      const logInInfo: LogInInfo = JSON.parse(this.getStoredLogInInfo());
+      this.loggedInUser.next(logInInfo);
+      this.currentOrderService.resetOrder(logInInfo.id);
+    } else {
+      this.router.navigate(['/welcome']);
+    }
   }
 }
