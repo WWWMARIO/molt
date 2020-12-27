@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { Item } from 'src/app/modules/shared/models/Item.model';
 import { Order } from 'src/app/modules/shared/models/Order.model';
@@ -17,7 +19,9 @@ export class EditOrderModalComponent implements OnInit {
   constructor(
     private currentOrderService: CurrentOrderService,
     private apiOrderService: ApiOrderService,
-    private itemsService: ItemsService
+    private itemsService: ItemsService,
+    private dialogRef: MatDialogRef<EditOrderModalComponent>,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +45,12 @@ export class EditOrderModalComponent implements OnInit {
   }
 
   confirmOrder(order: Order) {
-    this.apiOrderService.newOrder(order).subscribe();
+    this.apiOrderService.newOrder(order).subscribe(()=> {
+      this.dialogRef.close();
+      this.snackBar.open('Thank you for your order', 'Close', {
+        duration: 3000,
+      });
+      this.currentOrderService.resetOrder();
+    });
   }
 }

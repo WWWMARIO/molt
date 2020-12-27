@@ -2,12 +2,13 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, shareReplay, take } from 'rxjs/operators';
 import { APP_TITLE } from 'src/environments/environment';
 import { EditOrderModalComponent } from '../../orders/components/edit-order-modal/edit-order-modal.component';
 import { CurrentOrderService } from '../services/current-order.service';
-import { LoginService } from '../services/login.service';
+import { LogInInfo, LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-shell',
@@ -17,6 +18,7 @@ import { LoginService } from '../services/login.service';
 export class ShellComponent implements OnInit {
   appTitle = APP_TITLE;
   numberOfItemsOnOrder$: Observable<number>;
+  loggedInUser$: Observable<LogInInfo>;
 
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
@@ -30,10 +32,12 @@ export class ShellComponent implements OnInit {
     private currentOrderService: CurrentOrderService,
     private dialog: MatDialog,
     private snackbar: MatSnackBar,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.loggedInUser$ = this.loginService.loggedInUser$;
     this.numberOfItemsOnOrder$ = this.currentOrderService.getTotalNumberOfItemsOnOrder();
   }
 
@@ -57,6 +61,10 @@ export class ShellComponent implements OnInit {
 
   logout() {
     this.loginService.logOut();
+  }
+
+  viewProfile(userId: number) {
+    this.router.navigate([`/users/${userId}`])
   }
 
 }

@@ -10,9 +10,11 @@ import { ItemsService } from '../../menu/services/items.service';
   providedIn: 'root',
 })
 export class CurrentOrderService {
-  private order = new BehaviorSubject<Order>(new Order(60, []));
+  private order = new BehaviorSubject<Order>(new Order(-1,[]));
 
-  constructor(private itemsService: ItemsService) {}
+  constructor(
+    private itemsService: ItemsService
+    ) {}
 
   getOrder() {
     return this.order.asObservable();
@@ -66,5 +68,15 @@ export class CurrentOrderService {
     const order = this.order.getValue();
     order.removeItem(item);
     this.order.next(order);
+  }
+
+  resetOrder(userId?: number) {
+    if (userId) {
+      this.order.next(new Order(userId, []));
+    }  else {
+      const order = this.order.getValue()
+      this.order.next(new Order(order.userId, []));
+    }
+
   }
 }

@@ -39,18 +39,20 @@
       >
         <mat-icon>shopping_cart</mat-icon>
       </button>
-      <button
-        style="margin-left: 10px"
-        color="basic"
-        mat-mini-fab
-        [matMenuTriggerFor]="menu"
-      >
-        <mat-icon>person</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item>View profile</button>
-        <button mat-menu-item (click)="logout()">Log out</button>
-      </mat-menu>
+      <div *ngIf="loggedInUser$ | async as user">
+        <button
+          style="margin-left: 10px"
+          color="basic"
+          mat-mini-fab
+          [matMenuTriggerFor]="menu"
+        >
+          <mat-icon>person</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="viewProfile(user.id)">View profile</button>
+          <button mat-menu-item (click)="logout()">Log out</button>
+        </mat-menu>
+      </div>
     </mat-toolbar>
     <!--  <app-header></app-header> -->
     <router-outlet></router-outlet>

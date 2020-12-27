@@ -19,7 +19,7 @@ export class AuthInterceptor implements HttpInterceptor {
       return next.handle(request);
     } else {
       const storedLoginInfo: LogInInfo = JSON.parse (this.loginService.getStoredLogInInfo());
-      const authRequest = request.clone({ setHeaders: { Authorization: 'Bearer ' + storedLoginInfo.token } });
+      const authRequest = request.clone({ setHeaders: { Authorization: 'Bearer ' + storedLoginInfo?.token } });
       return next.handle(authRequest);
     }
 
