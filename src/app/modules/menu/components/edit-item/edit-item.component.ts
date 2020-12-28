@@ -44,7 +44,7 @@ export class EditItemComponent implements OnInit {
         description: ['', [Validators.required]],
         categoryId: [undefined, [Validators.required]],
         picture: [
-          'https://derdafoods.com/static/backend/img/meal-placeholder.jpg',
+          'https://imgpile.com/images/7NKdBg.jpg',
           [Validators.required],
         ],
       });
