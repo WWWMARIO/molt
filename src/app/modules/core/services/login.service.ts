@@ -55,6 +55,7 @@ export class LoginService {
   logIn(reqBody: { email: string; password: string }) {
     return this.http.post<LogInInfo>(`${API_BASE_URL}/login`, reqBody).pipe(
       tap((logInInfo: LogInInfo) => {
+        console.log(logInInfo)
         this.loggedInUser.next(logInInfo);
         this.currentOrderService.resetOrder(logInInfo.id);
         this.storeLogInInfo(logInInfo);
@@ -78,6 +79,7 @@ export class LoginService {
   startup() {
     if (this.isTokenValid()) {
       const logInInfo: LogInInfo = JSON.parse(this.getStoredLogInInfo());
+      console.log(logInInfo)
       this.loggedInUser.next(logInInfo);
       this.currentOrderService.resetOrder(logInInfo.id);
     } else {

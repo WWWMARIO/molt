@@ -29,6 +29,6 @@ export class ApiOrderService {
   }
 
   getOrdersForUser(userId: number) {
-    return this.http.get<Order[]>(`${API_BASE_URL}/orders/foruser/${userId}`).pipe(tap((orders)=>console.log(orders)));
+    return this.http.get<Order[]>(`${API_BASE_URL}/orders/foruser/${userId}`);
   }
 }
