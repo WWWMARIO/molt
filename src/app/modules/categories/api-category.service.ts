@@ -35,23 +35,9 @@ export class ApiCategoryService {
   deleteCategory(categoryId: number) {
     return this.http.delete(`${API_BASE_URL}/categories/${categoryId}`);
   }
+
+  updateCategory(category: Category) {
+    return this.http.put(`${API_BASE_URL}/categories`, category);
+  }
 }
 
-/* getUsers() {
-  return this.http.get<User[]>(`${API_BASE_URL}/users`).pipe(
-    tap((users) => {
-      this.usersService.setUsers(users);
-    })
-  );
-}
-
-getUser(userId: number) {
-  // const params = new HttpParams().set('id', userId.toString())
-  return this.http.get<User>(`${API_BASE_URL}/users/${userId}`/* , {params: params} */
-
-/* updateUser(user: User) {
-  // const params = new HttpParams().set('id', userId.toString())
-  console.log(user)
-  return this.http.put<User>(`${API_BASE_URL}/users`, user/)
-}
- */

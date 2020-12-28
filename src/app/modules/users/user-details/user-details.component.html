@@ -1,9 +1,17 @@
-<mat-card style="margin:20px">
-  <mat-card-header>
-    <mat-card-title style="margin: 30px">User details</mat-card-title>
+<mat-card style="margin: 20px">
+  <mat-card-header class="flex-row" style="align-items: center; cursor: pointer">
+    <!-- <div routerLink="/users"><mat-icon>keyboard_backspace</mat-icon></div> -->
+    <!-- <div> --><mat-card-title style="margin: 30px"
+      >User details</mat-card-title
+    ><!-- </div> -->
   </mat-card-header>
 
-  <form *ngIf="userForm" [formGroup]="userForm" class="flex-row flex-center" style="justify-content: space-between; flex-wrap: wrap">
+  <form
+    *ngIf="userForm"
+    [formGroup]="userForm"
+    class="flex-row flex-center"
+    style="justify-content: space-between; flex-wrap: wrap"
+  >
     <mat-form-field>
       <mat-label>First name</mat-label>
       <input
@@ -73,20 +81,25 @@
       </mat-error>
     </mat-form-field>
 
-    <button mat-raised-button (click)="updateUserData()" color="primary" [disabled]="loading">Update user data</button>
+    <button
+      mat-raised-button
+      (click)="updateUserData()"
+      color="primary"
+      [disabled]="loading"
+    >
+      Update user data
+    </button>
   </form>
 
-
-
-<!--   <div>
+  <!--   <div>
     <button mat-raised-button (click)="onSignUp()" color="primary">
       Log in
     </button>
   </div> -->
 </mat-card>
-<mat-card style="margin:20px">
+<mat-card style="margin: 20px">
   <mat-card-header>
     <mat-card-title style="margin: 30px">User orders</mat-card-title>
   </mat-card-header>
-  <app-orders-list [orders$]="userOrders$" ></app-orders-list>
+  <app-orders-list [orders$]="userOrders$"></app-orders-list>
 </mat-card>

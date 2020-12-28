@@ -28,4 +28,14 @@ export class ItemsService {
       })
     );
   }
+
+  getItemsForCategory(categoryId: number) {
+    return this.items$.pipe(
+      map((items) => {
+        return items.filter((item) => {
+          return item.categoryId === categoryId;
+        });
+      })
+    );
+  }
 }

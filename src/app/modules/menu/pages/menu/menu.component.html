@@ -33,11 +33,14 @@
   </div>
 </div>
 
-<mat-card style="margin:10px">
+<mat-card *ngFor="let category of categoriesList$ | async" style="margin:10px">
+  <mat-card-header>
+    <mat-card-title style="margin: 30px">{{category.name | titlecase}}</mat-card-title>
+  </mat-card-header>
 
-  <div class="flex-row" style="flex-wrap: wrap">
+  <div class="flex-row" style="flex-wrap: wrap; justify-content: center;">
     <mat-card
-      *ngFor="let item of menuItems | async"
+      *ngFor="let item of getItemsForCategory(category.id) | async"
       class="example-card"
       style="margin: 10px; position: relative; width: 150px"
     >
