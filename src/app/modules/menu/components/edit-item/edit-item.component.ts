@@ -44,7 +44,7 @@ export class EditItemComponent implements OnInit {
         description: ['', [Validators.required]],
         categoryId: [undefined, [Validators.required]],
         picture: [
-          'https://imgpile.com/images/7NKdBg.jpg',
+          'https://i.imgur.com/KbW6mQz.jpg',
           [Validators.required],
         ],
       });

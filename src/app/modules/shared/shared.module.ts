@@ -23,6 +23,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
+
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 @NgModule({
   declarations: [OrdersListComponent],
   imports: [
@@ -45,6 +48,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatChipsModule,
     MatMenuModule,
     MatSidenavModule,
+    MatTooltipModule
 
   ],
   exports: [
@@ -68,7 +72,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatChipsModule,
     MatMenuModule,
     MatSelectModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatTooltipModule
   ],
 })
 export class SharedModule {}
