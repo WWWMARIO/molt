@@ -45,6 +45,7 @@ const routes: Routes = [
             (m) => m.CategoriesModule
           ),
       },
+      { path: 'messages', canActivate: [AuthGuard], loadChildren: () => import('./modules/messages/messages.module').then(m => m.MessagesModule) },
       {
         path: '',
         redirectTo: 'menu',

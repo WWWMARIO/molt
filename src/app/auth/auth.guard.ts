@@ -56,7 +56,12 @@ export class AuthGuard implements CanActivate {
         break;
       }
       case 'categories': {
-        console.log('cat');
+        if (logInInfo.role === 'admin') {
+          return true;
+        }
+        break;
+      }
+      case 'messages': {
         if (logInInfo.role === 'admin') {
           return true;
         }
