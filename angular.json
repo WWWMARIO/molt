@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "molt": {
+    "marios": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/molt",
+            "outputPath": "dist/marios",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,18 +68,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "molt:build"
+            "browserTarget": "marios:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "molt:build:production"
+              "browserTarget": "marios:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "molt:build"
+            "browserTarget": "marios:build"
           }
         },
         "test": {
@@ -117,16 +117,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "molt:serve"
+            "devServerTarget": "marios:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "molt:serve:production"
+              "devServerTarget": "marios:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "molt"
+  "defaultProject": "marios"
 }

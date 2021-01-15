@@ -1,8 +1,9 @@
 {
-  "name": "molt",
+  "name": "marios",
   "version": "0.0.0",
   "author": "Mario",
   "description": "Marios",
+  "compression": "maximum",
   "scripts": {
     "ng": "ng",
     "start": "electron-forge start",
@@ -69,7 +70,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "molt"
+            "name": "marios"
           }
         },
         {
