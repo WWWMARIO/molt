@@ -6,6 +6,7 @@ import { Category } from 'src/app/modules/categories/page/categories/categories.
 import { Item } from 'src/app/modules/shared/models/Item.model';
 import { ApiItemsService } from '../../services/api-items.service';
 import { ApiCategoryService } from 'src/app/modules/categories/api-category.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-item',
@@ -22,7 +23,8 @@ export class EditItemComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: Item,
     private formBuilder: FormBuilder,
     private apiItemsService: ApiItemsService,
-    private apiCategoryService: ApiCategoryService
+    private apiCategoryService: ApiCategoryService,
+    private snackbar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -35,7 +37,7 @@ export class EditItemComponent implements OnInit {
         price: [this.data.price, [Validators.required, Validators.min(0.01)]],
         description: [this.data.description, [Validators.required]],
         picture: [this.data.picture, [Validators.required]],
-        categoryId: [this.data.categoryId, [Validators.required]]
+        categoryId: [this.data.categoryId, [Validators.required]],
       });
     } else {
       this.itemForm = this.formBuilder.group({
@@ -43,10 +45,7 @@ export class EditItemComponent implements OnInit {
         price: ['', [Validators.required]],
         description: ['', [Validators.required]],
         categoryId: [undefined, [Validators.required]],
-        picture: [
-          'https://i.imgur.com/KbW6mQz.jpg',
-          [Validators.required],
-        ],
+        picture: ['https://i.imgur.com/KbW6mQz.jpg', [Validators.required]],
       });
     }
   }
@@ -72,8 +71,14 @@ export class EditItemComponent implements OnInit {
     this.apiItemsService
       .deleteItem(this.itemForm.controls.id.value)
       .subscribe(() => {
-        this.apiItemsService.getItems().subscribe(() => {
-          this.dialogRef.close();
+        this.apiItemsService.getItems().subscribe(
+          () => {
+            this.dialogRef.close();
+          },
+        );
+      }, () => {
+        this.snackbar.open('Can not delete item', 'Close', {
+          duration: 3000,
         });
       });
   }

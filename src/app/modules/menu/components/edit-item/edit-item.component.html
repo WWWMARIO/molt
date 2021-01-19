@@ -44,8 +44,11 @@
   <mat-form-field appearance="fill">
     <mat-label>Category</mat-label>
     <mat-select formControlName="categoryId">
-      <mat-option *ngFor="let category of categories$ | async" [value]="category.id">
-        {{category.name}}
+      <mat-option
+        *ngFor="let category of categories$ | async"
+        [value]="category.id"
+      >
+        {{ category.name }}
       </mat-option>
     </mat-select>
     <mat-error *ngIf="itemForm.controls.categoryId.hasError('required')">
@@ -66,20 +69,22 @@
     </mat-error>
   </mat-form-field>
 </form>
-<button
-  mat-raised-button
-  (click)="onSave()"
-  color="primary"
-  [disabled]="loading"
->
-  {{ data ? "Save changes" : "Create new item" }}
-</button>
-<button
-  *ngIf="data"
-  mat-raised-button
-  (click)="onDelete()"
-  color="warning"
-  [disabled]="loading"
->
-  Delete item
-</button>
+<div class="flex-row" style="justify-content: space-between">
+  <button
+    mat-raised-button
+    (click)="onSave()"
+    color="primary"
+    [disabled]="loading"
+  >
+    {{ data ? "Save changes" : "Create new item" }}
+  </button>
+  <button
+    *ngIf="data"
+    mat-raised-button
+    (click)="onDelete()"
+    color="warn"
+    [disabled]="loading"
+  >
+    <mat-icon>delete_forever</mat-icon>
+  </button>
+</div>

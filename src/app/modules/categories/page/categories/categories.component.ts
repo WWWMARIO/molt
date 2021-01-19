@@ -56,16 +56,18 @@ export class CategoriesComponent implements OnInit {
 
   remove(category: Category): void {
     console.log(category.id);
-    this.apiCategoryService.deleteCategory(category.id).subscribe(() => {
-      this.snackbar.open('Category deleted', 'Close', {
-        duration: 3000
-      });
-      this.apiCategoryService.refreshCategories().subscribe();
-    }, error =>{
-      this.snackbar.open('Can not delete category', 'Close', {
-        duration: 3000
-      });
-    }
+    this.apiCategoryService.deleteCategory(category.id).subscribe(
+      () => {
+        this.snackbar.open('Category deleted', 'Close', {
+          duration: 3000,
+        });
+        this.apiCategoryService.refreshCategories().subscribe();
+      },
+      (error) => {
+        this.snackbar.open('Can not delete category', 'Close', {
+          duration: 3000,
+        });
+      }
     );
     /*  const index = this.categoryList.indexOf(category);
 

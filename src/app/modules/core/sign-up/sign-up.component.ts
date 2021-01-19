@@ -12,6 +12,7 @@ import { LoginService } from '../services/login.service';
 })
 export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
+  loading = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,6 +35,12 @@ export class SignUpComponent implements OnInit {
 
 
   onSignUp() {
+    if (this.signUpForm.invalid) {
+      this.snackBar.open('Please complete signup form', 'Close', {
+        duration: 3000
+      });
+      return;
+    }
     this.loginService.signUp(this.signUpForm.value).subscribe(()=> {
       this.dialogRef.close();
       this.router.navigate(['/menu'])

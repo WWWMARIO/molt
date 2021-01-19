@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
     const wantedRoute = state.url.split('/');
     wantedRoute.shift();
     // const userRole = await this.loginService.loggedInUser$.toPromise().then(()=> {console.log("done")});
-    console.log(wantedRoute);
+    // console.log(wantedRoute);
     // console.log(userRole)
     const logInInfo: LogInInfo = JSON.parse(localStorage.getItem('logInInfo'));
 
