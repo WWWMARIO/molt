@@ -13,6 +13,7 @@ import { LoginService } from '../services/login.service';
 export class LogInComponent implements OnInit {
   logInForm: FormGroup;
   submitted = false;
+  loading = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,11 +31,13 @@ export class LogInComponent implements OnInit {
   }
 
   onLogIn() {
+    this.loading = true;
     this.loginService.logIn(this.logInForm.value).subscribe(resp => {
       this.dialogRef.close();
       this.router.navigate(['/menu']);
 
     }, err => {
+      this.loading = false;
       this.snackBar.open('Invalid username or password', '', {
         duration: 3000
       });

@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { distinctUntilChanged, tap } from 'rxjs/operators';
+import { distinctUntilChanged } from 'rxjs/operators';
 import { ApiCategoryService } from 'src/app/modules/categories/api-category.service';
 import { Category } from 'src/app/modules/categories/page/categories/categories.component';
 import { CurrentOrderService } from 'src/app/modules/core/services/current-order.service';
-import { LogInInfo, LoginService } from 'src/app/modules/core/services/login.service';
+import {
+  LogInInfo,
+  LoginService,
+} from 'src/app/modules/core/services/login.service';
 import { Item } from 'src/app/modules/shared/models/Item.model';
 import { EditItemComponent } from '../../components/edit-item/edit-item.component';
 import { ApiItemsService } from '../../services/api-items.service';
@@ -22,6 +24,7 @@ export class MenuComponent implements OnInit {
   // categories = new FormControl();
   categoriesList$: Observable<Category[]>;
   userInfo: Observable<LogInInfo>;
+  menuItems$: Observable<Item[]>;
 
   constructor(
     private apiItemsService: ApiItemsService,
@@ -37,7 +40,7 @@ export class MenuComponent implements OnInit {
     this.categoriesList$ = this.apiCategoryService.getCategories();
     this.apiCategoryService.refreshCategories().subscribe();
     this.apiItemsService.getItems().subscribe();
-    // this.menuItems = this.itemsService.getItems();
+    this.menuItems$ = this.itemsService.getItems();
   }
 
   getItemAmount(item: Item) {
@@ -71,9 +74,4 @@ export class MenuComponent implements OnInit {
       width: '90%',
     });
   }
-
-  getItemsForCategory(categoryId: number) {
-    return this.itemsService.getItemsForCategory(categoryId)
-  }
-
 }

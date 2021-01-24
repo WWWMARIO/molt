@@ -1,44 +1,47 @@
-<h1>Log in</h1>
+<div *ngIf="!loading">
+  <h1>Log in</h1>
 
-<form [formGroup]="logInForm" class="flex-column">
-  <mat-form-field>
-    <mat-label>Email</mat-label>
-    <input
-      type="email"
-      matInput
-      formControlName="email"
-      placeholder="Ex. pat@example.com"
-    />
-    <mat-error
-      *ngIf="
-        logInForm.controls.email.hasError('email') &&
-        !logInForm.controls.email.hasError('required')
-      "
-    >
-      Please enter a valid email address
-    </mat-error>
-    <mat-error *ngIf="logInForm.controls.email.hasError('required')">
-      Email is <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Password</mat-label>
-    <input
-      type="password"
-      matInput
-      formControlName="password"
-      placeholder="Enter password"
-    />
-    <mat-error *ngIf="logInForm.controls.password.hasError('required')">
-      Please enter your password
-    </mat-error>
-  </mat-form-field>
-  <div class="flex-row" style="justify-content: space-between; width: 100%">
-    <button mat-raised-button (click)="onCancel()" color="primary">
-      Cancel
-    </button>
-    <button mat-raised-button (click)="onLogIn()" color="primary">
-      Log in
-    </button>
-  </div>
-</form>
+  <form [formGroup]="logInForm" class="flex-column">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input
+        type="email"
+        matInput
+        formControlName="email"
+        placeholder="Ex. pat@example.com"
+      />
+      <mat-error
+        *ngIf="
+          logInForm.controls.email.hasError('email') &&
+          !logInForm.controls.email.hasError('required')
+        "
+      >
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="logInForm.controls.email.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input
+        type="password"
+        matInput
+        formControlName="password"
+        placeholder="Enter password"
+      />
+      <mat-error *ngIf="logInForm.controls.password.hasError('required')">
+        Please enter your password
+      </mat-error>
+    </mat-form-field>
+    <div class="flex-row" style="justify-content: space-between; width: 100%">
+      <button mat-raised-button (click)="onCancel()" color="primary">
+        Cancel
+      </button>
+      <button mat-raised-button (click)="onLogIn()" color="primary">
+        Log in
+      </button>
+    </div>
+  </form>
+</div>
+<mat-spinner *ngIf="loading"></mat-spinner>

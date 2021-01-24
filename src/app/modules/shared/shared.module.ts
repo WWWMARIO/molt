@@ -16,18 +16,15 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { OrdersListComponent } from './components/orders-list/orders-list.component';
 import { MatChipsModule } from '@angular/material/chips';
-
 import { MatMenuModule } from '@angular/material/menu';
-
-
 import {MatSelectModule} from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
-
-
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { FilterMenuByCategoryPipe } from './pipes/filter-menu-by-category.pipe';
 
 @NgModule({
-  declarations: [OrdersListComponent],
+  declarations: [OrdersListComponent, FilterMenuByCategoryPipe],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -48,7 +45,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatChipsModule,
     MatMenuModule,
     MatSidenavModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatProgressSpinnerModule
 
   ],
   exports: [
@@ -73,7 +71,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatMenuModule,
     MatSelectModule,
     MatSidenavModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatProgressSpinnerModule,
+    FilterMenuByCategoryPipe
   ],
 })
 export class SharedModule {}

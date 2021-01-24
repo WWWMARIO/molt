@@ -1,93 +1,96 @@
-<h1>Sign up</h1>
+<div *ngIf="!loading">
+  <h1>Sign up</h1>
 
-<form [formGroup]="signUpForm" class="flex-column">
-  <mat-form-field>
-    <mat-label>First name</mat-label>
-    <input
-      type="text"
-      matInput
-      formControlName="firstName"
-      placeholder="First name"
-    />
-    <mat-error *ngIf="signUpForm.controls.firstName.hasError('required')">
-      Please enter your first name
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Last name</mat-label>
-    <input
-      type="text"
-      matInput
-      formControlName="lastName"
-      placeholder="Last name"
-    />
-    <mat-error *ngIf="signUpForm.controls.lastName.hasError('required')">
-      Please enter your last name
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Address</mat-label>
-    <input
-      type="text"
-      matInput
-      formControlName="address"
-      placeholder="Full address"
-    />
-    <mat-error *ngIf="signUpForm.controls.address.hasError('required')">
-      Please enter your full address
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Phone number</mat-label>
-    <input
-      type="text"
-      matInput
-      formControlName="phoneNumber"
-      placeholder="Phone number"
-    />
-    <mat-error *ngIf="signUpForm.controls.phoneNumber.hasError('required')">
-      Please enter your phone number
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Email</mat-label>
-    <input
-      type="email"
-      matInput
-      formControlName="email"
-      placeholder="Ex. pat@example.com"
-    />
-    <mat-error
-      *ngIf="
-        signUpForm.controls.email.hasError('email') &&
-        !signUpForm.controls.email.hasError('required')
-      "
-    >
-      Please enter a valid email address
-    </mat-error>
-    <mat-error *ngIf="signUpForm.controls.email.hasError('required')">
-      Email is <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Password</mat-label>
-    <input
-      type="password"
-      matInput
-      formControlName="password"
-      placeholder="Enter password"
-    />
-    <mat-error *ngIf="signUpForm.controls.password.hasError('required')">
-      Please enter your password
-    </mat-error>
-  </mat-form-field>
+  <form [formGroup]="signUpForm" class="flex-column">
+    <mat-form-field>
+      <mat-label>First name</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="firstName"
+        placeholder="First name"
+      />
+      <mat-error *ngIf="signUpForm.controls.firstName.hasError('required')">
+        Please enter your first name
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Last name</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="lastName"
+        placeholder="Last name"
+      />
+      <mat-error *ngIf="signUpForm.controls.lastName.hasError('required')">
+        Please enter your last name
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Address</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="address"
+        placeholder="Full address"
+      />
+      <mat-error *ngIf="signUpForm.controls.address.hasError('required')">
+        Please enter your full address
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Phone number</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="phoneNumber"
+        placeholder="Phone number"
+      />
+      <mat-error *ngIf="signUpForm.controls.phoneNumber.hasError('required')">
+        Please enter your phone number
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input
+        type="email"
+        matInput
+        formControlName="email"
+        placeholder="Ex. pat@example.com"
+      />
+      <mat-error
+        *ngIf="
+          signUpForm.controls.email.hasError('email') &&
+          !signUpForm.controls.email.hasError('required')
+        "
+      >
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="signUpForm.controls.email.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input
+        type="password"
+        matInput
+        formControlName="password"
+        placeholder="Enter password"
+      />
+      <mat-error *ngIf="signUpForm.controls.password.hasError('required')">
+        Please enter your password
+      </mat-error>
+    </mat-form-field>
 
-  <div class="flex-row" style="justify-content: space-between; width: 100%">
-    <button mat-raised-button (click)="onCancel()" color="primary">
-      Cancel
-    </button>
-    <button mat-raised-button (click)="onSignUp()" color="primary">
-      Sign up
-    </button>
-  </div>
-</form>
+    <div class="flex-row" style="justify-content: space-between; width: 100%">
+      <button mat-raised-button (click)="onCancel()" color="primary">
+        Cancel
+      </button>
+      <button mat-raised-button (click)="onSignUp()" color="primary">
+        Sign up
+      </button>
+    </div>
+  </form>
+</div>
+<mat-spinner *ngIf="loading"></mat-spinner>

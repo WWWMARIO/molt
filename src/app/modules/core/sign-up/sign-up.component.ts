@@ -36,15 +36,17 @@ export class SignUpComponent implements OnInit {
 
   onSignUp() {
     if (this.signUpForm.invalid) {
-      this.snackBar.open('Please complete signup form', 'Close', {
+      this.snackBar.open('Please complete the sign up form', 'Close', {
         duration: 3000
       });
       return;
     }
+    this.loading = true;
     this.loginService.signUp(this.signUpForm.value).subscribe(()=> {
       this.dialogRef.close();
       this.router.navigate(['/menu'])
     }, error => {
+      this.loading = false;
       this.snackBar.open(error.error, 'Close', {
         duration: 3000
       });
