@@ -37,6 +37,7 @@
     color="primary"
     (click)="confirmOrder(order)"
     *ngIf="order.orderItems.length > 0"
+    [disabled]="loading"
   >
     Confirm order
   </button>

@@ -15,6 +15,7 @@ import { ApiOrderService } from '../../api-orders.service';
 })
 export class EditOrderModalComponent implements OnInit {
   order$: Observable<Order>;
+  loading = false;
 
   constructor(
     private currentOrderService: CurrentOrderService,
@@ -45,6 +46,7 @@ export class EditOrderModalComponent implements OnInit {
   }
 
   confirmOrder(order: Order) {
+    this.loading = true;
     this.apiOrderService.newOrder(order).subscribe(()=> {
       this.dialogRef.close();
       this.snackBar.open('Thank you for your order', 'Close', {
