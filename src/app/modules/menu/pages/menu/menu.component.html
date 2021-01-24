@@ -16,8 +16,11 @@
   </div>
 </div>
 
-<mat-card *ngFor="let category of categoriesList$ | async" style="margin: 10px">
-  <div *ngIf="(menuItems$ | async | filterMenuByCategory: category).length > 0">
+<div *ngFor="let category of categoriesList$ | async">
+  <mat-card
+    *ngIf="(menuItems$ | async | filterMenuByCategory: category).length > 0"
+    style="margin: 10px"
+  >
     <mat-card-header>
       <mat-card-title style="margin: 30px">{{
         category.name | titlecase
@@ -60,5 +63,5 @@
         </mat-card-actions>
       </mat-card>
     </div>
-  </div>
-</mat-card>
+  </mat-card>
+</div>
