@@ -9,7 +9,7 @@ function createWindow () {
     }
   })
 
-  win.loadFile('dist/marios/index.html')
+  win.loadFile('dist/shopiFE/index.html')
 }
 
 app.whenReady().then(createWindow)

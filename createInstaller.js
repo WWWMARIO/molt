@@ -24,7 +24,7 @@ async function getInstallerConfig () {
   }) */
   try {
     await electronInstaller.createWindowsInstaller({
-      appDirectory: '/out/molt-win32-x64',
+      appDirectory: '/out/shopiFE-win32-x64',
       outputDirectory: '/tmp/build/installer64',
       authors: 'My App Inc.',
       exe: 'myapp.exe'
@@ -35,4 +35,4 @@ async function getInstallerConfig () {
   }
 }
 
-// out\molt-win32-x64
+// out\shopiFE-win32-x64
